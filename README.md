@@ -21,13 +21,21 @@ Before running the application, make sure you have [Node.js](https://nodejs.org/
 npm install inquirer qr-image fs
 ```
 
+...
+
 ## Usage
 
-To run the application, navigate to the project directory in your terminal and execute the following command:
+1. **Running the Script**: Navigate to the project directory in your terminal and execute the following command:
+    ```sh
+    node index.js
+    ```
+2. **Entering URL**: Follow the on-screen prompt and enter the URL for which you want to generate the QR code.
+3. **Output**: After entering the URL, the script will generate a QR code and save it as `qr_image.png` in the project directory. Additionally, the entered URL will be saved in a text file named `url.txt`.
 
-```sh
-node index.js
-```
+Note: Make sure you have the necessary Node.js packages installed by running `npm install` before executing the script.
+
+...
+
 
 Follow the on-screen prompt and enter the URL for which you want to generate the QR code. The QR code will be saved as `qr_image.png` in the project directory, and the URL will be saved in a text file named `url.txt`.
 
