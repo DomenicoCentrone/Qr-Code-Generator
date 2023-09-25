@@ -1,26 +1,25 @@
-import inquirer from "inquirer";
-import qr from "qr-image";
-import fs from "fs"
+import QRCode from 'https://cdn.skypack.dev/qrcode';
 
-inquirer
-  .prompt([{
-    message: "Type in your URL: ",
-    name: "URL"
-}])
-  .then((answers) => {
-    const url = answers.URL;
-    var qr_svg = qr.image(url);
-    qr_svg.pipe(fs.createWriteStream('qr_image.png'));
+function generateQR() {
+    const urlInput = document.getElementById('url-input');
+    const url = urlInput.value;
+    const qrOutput = document.getElementById('qr-output');
+    
+    QRCode.toCanvas(url, { width: 200 })
+        .then(canvas => {
+            qrOutput.innerHTML = ''; // Pulire il contenuto precedente
+            qrOutput.appendChild(canvas);
 
-    fs.writeFile("url.txt", url, (err) => {
-        if (err) throw err;
-        console.log("The file has been saved!")
-    });
-  })
-  .catch((error) => {
-    if (error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else went wrong
-    }
-  });
+            // Creare un Blob con il contenuto del file url.txt
+            const blob = new Blob([url], { type: 'text/plain;charset=utf-8' });
+
+            // Creare un link per il download del Blob come file url.txt
+            const link = document.getElementById('download-link');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'url.txt';
+            link.style.display = 'block';
+        })
+        .catch(error => console.error(error));
+}
+
+window.generateQR = generateQR;
