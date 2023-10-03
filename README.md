@@ -1,5 +1,5 @@
 # QR Code Generator
-
+[DEMO](https://ubiquitous-phoenix-f5eeda.netlify.app/)
 This project is a simple QR Code generator built with Node.js. It uses the `inquirer` package for command line user inputs and the `qr-image` package for generating QR codes.
 
 ## Features
